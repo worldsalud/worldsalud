@@ -5,10 +5,11 @@ import { useRouter } from 'next/navigation';
 import { LoginInterface } from "../interfaces/Login.interface";
 import { SignupInterface } from "../interfaces/Signup.interface";
 import axios from "axios";
-import { API_BACK } from "@/shared/config/api/getEnv";
+
 import { UpdateDataProfileInterface, UpdateDataUserShipmentInterface, UserInterface } from "../interfaces/User.interface";
-import { getAuthHeaders } from '@/modules/user/pages/manager/context/getAuthHeaders';
-import Loading from '@/app/loading';
+import { getAuthHeaders } from '../../../../modules/user/pages/manager/context/getAuthHeaders';
+import Loading from '../../../../app/loading';
+import { API_BACK } from '../../../../shared/config/api/getEnv';
 
 
 

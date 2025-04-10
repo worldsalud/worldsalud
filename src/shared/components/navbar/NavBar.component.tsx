@@ -4,12 +4,12 @@ import React, { useState, useEffect } from "react";
 import { Menu, X, ShoppingCart, HelpCircle, Search } from "lucide-react";
 import Link from "next/link";
 import Image from "next/image";
-import { useAuth } from "@/modules/auth/shared/context/Auth.context";
+import { useAuth } from "../../../modules/auth/shared/context/Auth.context";
 import UserMenu from "./UserMenu.components";
 import { useRouter } from "next/navigation";
 import "@/shared/styles/Alert.style.css";
 import HamburguerMenu from "./HamburguerMenu.components";
-import { useCart } from "@/modules/checkout/pages/cart/context/Cart.context";
+import { useCart } from "../../../modules/checkout/pages/cart/context/Cart.context";
 
 export default function NavBar() {
   const { isAuthenticated } = useAuth();

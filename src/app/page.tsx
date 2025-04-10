@@ -21,7 +21,7 @@ export default function LandingPage() {
         {/* Imagen de fondo */}
         <div className="absolute inset-0 z-[-1]">
           <Image
-            src="/path-to-your-image.jpg"
+            src="/path-to-your-image.jpg" // Reemplaza con tu imagen
             alt="Imagen principal"
             className="w-full h-full object-cover"
             width={100}
