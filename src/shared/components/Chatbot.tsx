@@ -143,7 +143,7 @@ export default function Chatbot() {
               onMouseDown={startDrag}
             >
               <div className="flex justify-between items-center border-b pb-2">
-                <h2 className="text-lg font-semibold">Chatbot INK3D</h2>
+                <h2 className="text-lg font-semibold">World Salud</h2>
                 <button onClick={() => setIsOpen(false)} className="text-red-500">
                   <X />
                 </button>
