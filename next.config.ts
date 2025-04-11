@@ -40,9 +40,8 @@ const nextConfig: NextConfig = {
       {
         protocol: "https",
         hostname: "co.pinterest.com"
-      }
+      },
     ],
   },
 };
-
 export default nextConfig;

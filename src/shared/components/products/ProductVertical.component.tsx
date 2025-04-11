@@ -22,7 +22,6 @@ const ProductCardVertical: React.FC<ProductCardProps> = ({
   return (
     <div className="flex justify-evenly">
         <div className="flex flex-col overflow-hidden w-48 min-w-fit h-80 min-h-fit border border-gray-200 gap-1 p-2 justify-between">
-        {/* Imagen del producto  */}
         <div className="flex items-center justify-center overflow-hidden ">
             {image ? (
             <Image
@@ -36,23 +35,12 @@ const ProductCardVertical: React.FC<ProductCardProps> = ({
             <span className="text-gray-500 ">Placeholder</span>
             )}
         </div>
-
-        {/* Información del producto  */}
         <div className="w-2/3">
-            {/* Categoría  */}
             <span className="text-xs font-bold text-red-600 bg-red-100 px-2 py-1 uppercase">
             {category}
             </span>
-
-            {/* Nombre del producto  */}
             <h3 className="text-lg font-extralight mt-1">{name}</h3>
-
-            
-
-            {/* Precio  */}
             <p className="text-2xl font-bold mt-2">{price}</p>
-
-            {/* Rating  */}
             <div className="flex items-center gap-1 text-blue-500 text-sm mt-1">
             <span className="font-semibold">{rating}</span>
             {[...Array(5)].map((_, i) => (
@@ -60,10 +48,7 @@ const ProductCardVertical: React.FC<ProductCardProps> = ({
             ))}
             <span className="text-gray-400 text-xs">({reviews})</span>
             </div>
-            {/* Cuotas */}
-            {/* <p className="text-gray-500 text-sm">
-            en <span className="font-semibold">{installments}</span>
-            </p> */}
+
         </div>
         </div>
     </div>

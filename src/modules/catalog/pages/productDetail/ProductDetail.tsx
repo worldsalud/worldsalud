@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import { useParams } from "next/navigation";
 import Image from "next/image";
 import BackButton from "@/shared/components/buttons/BackButton.component";
-// import { Heart } from "lucide-react";
 import {
   Product,
   useCart,
@@ -17,12 +16,10 @@ import SkeletonProducts from "@/modules/checkout/pages/cart/components/SkeletonP
 export default function ProductDetail() {
   const params = useParams();
   const id = params?.id as string;
-
   const [product, setProduct] = useState<Product | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  // const [isFavorited, setIsFavorited] = useState(false);
-  // const [showNotification, setShowNotification] = useState(false);
+
   const [selectedSize, setSelectedSize] = useState<string | null>(null);
   const [availableSizes, setAvailableSizes] = useState<Product[]>([]);
   const [selectedImage, setSelectedImage] = useState<string>("");
@@ -33,12 +30,12 @@ export default function ProductDetail() {
     const normalizedStyle = style.trim().toLowerCase();
 
     const styleColors: Record<string, string> = {
-      motorsport: "bg-red-500 text-white", // Rojo con letras blancas
-      asian: "text-green-700 bg-green-200", // Verde claro con verde oscuro
-      streetwear: "bg-black text-white", // Negro con letras blancas
+      motorsport: "bg-red-500 text-white", 
+      asian: "text-green-700 bg-green-200", 
+      streetwear: "bg-black text-white", 
     };
 
-    return styleColors[normalizedStyle] || "bg-blue-500 text-white"; // Azul por defecto si no coincide
+    return styleColors[normalizedStyle] || "bg-blue-500 text-white"; 
   };
 
 
@@ -93,16 +90,6 @@ export default function ProductDetail() {
   const handleImageClick = (imageUrl: string) => {
     setSelectedImage(imageUrl || "/placeholder-image.png");
   };
-
-  // const handleFavoriteClick = () => {
-  //   setIsFavorited(!isFavorited);
-  //   setShowNotification(true);
-
-  //   setTimeout(() => {
-  //     setShowNotification(false);
-  //   }, 2000);
-  // };
-
   if (loading) return (
     <>
       <SkeletonProductDetail/>
@@ -119,15 +106,14 @@ export default function ProductDetail() {
     <div>
       <BackButton tab="Producto" />
       <div className="relative py-14">
-      {/* 🎨 Fondo con desenfoque (ahora correctamente detrás) */}
       <div
     className="absolute inset-0 bg-repeat blur-xl "
     style={{
       backgroundImage: "url('/images/textures/8.jpg')",
-      backgroundSize: "1000px", // Ajusta el tamaño del mosaico a tu gusto
+      backgroundSize: "1000px", 
       backgroundPosition: "center",
-      backgroundRepeat: "repeat", // Hace que la imagen se repita en mosaico
-      filter: "blur(10px)", // Aplica el desenfoque
+      backgroundRepeat: "repeat", 
+      filter: "blur(10px)", 
     }}
   />
       <div className="absolute inset-0 bg-white/30"></div>
@@ -139,25 +125,6 @@ export default function ProductDetail() {
               Sin Stock
             </div>
           )}
-          {/* <button
-            className="absolute top-4 right-4 text-gray-500 hover:text-black transition"
-            onClick={handleFavoriteClick}
-          >
-            <Heart
-              size={24}
-              fill={isFavorited ? "black" : "none"}
-              stroke="black"
-            />
-          </button>
-
-          {showNotification && (
-            <div className="absolute -top-9 right-0 bg-black text-white text-sm px-3 py-1 rounded-md shadow-lg animate-fade-in">
-              {isFavorited
-                ? "Se añadió a favoritos!"
-                : "Se quitó de favoritos!"}
-            </div> */}
-          {/* )} */}
-
           <div className="flex flex-col items-center gap-4 w-full md:w-3/5">
             <div className="rounded-lg bg-white flex items-center justify-center w-[500px] h-[500px]">
               <Image
@@ -168,7 +135,6 @@ export default function ProductDetail() {
                 className="object-contain w-full h-full"
               />
             </div>
-
             <div className="flex gap-3 overflow-x-auto">
               {product.image?.slice(0, 5).map((img, index) => (
                 <button
@@ -188,17 +154,12 @@ export default function ProductDetail() {
               ))}
             </div>
           </div>
-
           <div className="flex flex-col justify-between flex-grow gap-2 w-full md:w-2/5 ">
             <h2 className="text-4xl font-bold">{product.name}</h2>
             <div className="flex gap-2">
-
-
               <span className={`text-xs font-bold px-2 py-1 uppercase mt-2 inline-block rounded-md ${getStyleClasses(product.style)}`} >
                 {product.style || "Sin estilo"}
               </span>
-
-
             </div>
             <p className="text-gray-500 text-lg whitespace-pre-line line-clamp-6">
               {product.description}
@@ -206,7 +167,6 @@ export default function ProductDetail() {
             <p className="text-4xl font-bold text-black mt-2">
               ${product.price}
             </p>
-
             <div>
               <p className="text-sm font-bold mb-2">Selecciona tu talla:</p>
               <div className="flex gap-3">
@@ -215,7 +175,6 @@ export default function ProductDetail() {
                     (item) => item.size === size
                   );
                   const isAvailable = productWithSize && productWithSize.stock > 0;
-
                   return (
                     <button
                       key={size}

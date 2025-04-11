@@ -30,10 +30,7 @@ export default function ProductsPage() {
   const [error, setError] = useState<string | null>(null);
   const initialCategory = searchParams.get("category") || null;
   const [selectedCategory, setSelectedCategory] = useState<string | null>(initialCategory);
-
-  // Lista fija de estilos (todos los estilos disponibles)
   const allStyles = ["Streetwear", "Asian", "Motorsport"];
-
   const getStyleClasses = (style: string | undefined) => {
     if (!style) return "bg-blue-500 text-white";
     const normalizedStyle = style.trim().toLowerCase();
@@ -42,14 +39,13 @@ export default function ProductsPage() {
       asian: "text-green-600 bg-green-100",
       streetwear: "bg-black text-white",
     };
-
     return styleColors[normalizedStyle] || "bg-blue-500 text-white";
   };
 
   useEffect(() => {
     const fetchProducts = async () => {
       try {
-        const endpoint = "/products";  // No dependemos de un estilo para la búsqueda
+        const endpoint = "/products";  
         const response = await fetch(`${API_BACK}${endpoint}`);
         if (!response.ok) {
           throw new Error("Error al obtener los productos");
@@ -66,35 +62,28 @@ export default function ProductsPage() {
     fetchProducts();
   }, []);
 
-  // Filtrar productos por estilo seleccionado
   const filteredProducts = products.filter((product) => {
     if (selectedStyle) {
       return product.style.toLowerCase() === selectedStyle.toLowerCase();
     }
     return true;
   });
-
-  // Filtrar productos por categoría seleccionada
   const filteredByCategory = selectedCategory
     ? filteredProducts.filter((product) => product.category.name.toLowerCase() === selectedCategory.toLowerCase())
     : filteredProducts;
-
-  // Eliminar duplicados por nombre (si hay productos con el mismo nombre)
   const uniqueProducts = Array.from(
     new Map(filteredByCategory.map((product) => [product.name, product])).values()
   );
-
   return (
 <div className="relative flex flex-col min-h-screen">
-  {/* Capa de fondo con imagen y blur */}
   <div
     className="absolute inset-0 bg-repeat blur-xl "
     style={{
       backgroundImage: "url('/images/textures/8.jpg')",
-      backgroundSize: "1000px", // Ajusta el tamaño del mosaico a tu gusto
+      backgroundSize: "1000px", 
       backgroundPosition: "center",
-      backgroundRepeat: "repeat", // Hace que la imagen se repita en mosaico
-      filter: "blur(10px)", // Aplica el desenfoque
+      backgroundRepeat: "repeat", 
+      filter: "blur(10px)", 
     }}
   />
   <div className="absolute inset-0 bg-white/30"></div>
