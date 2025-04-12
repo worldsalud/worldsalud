@@ -116,7 +116,7 @@ export default function Chatbot() {
     <div className="fixed bottom-5 right-5 z-[99999]">
       <button
         onClick={() => setIsOpen(!isOpen)}
-        className="bg-blue-500 text-white p-3 rounded-full shadow-lg hover:scale-110 transition"
+        className="bg-green-500 text-white p-3 rounded-full shadow-lg hover:scale-110 transition"
       >
         <MessageSquareMoreIcon size={24} className="hidden sm:block" />
         <MessageSquareMoreIcon size={15} className="sm:hidden" />
@@ -143,7 +143,7 @@ export default function Chatbot() {
               onMouseDown={startDrag}
             >
               <div className="flex justify-between items-center border-b pb-2">
-                <h2 className="text-lg font-semibold">World Salud</h2>
+                <h2 className="text-lg font-semibold">🌿 World Salud</h2>
                 <button onClick={() => setIsOpen(false)} className="text-red-500">
                   <X />
                 </button>
