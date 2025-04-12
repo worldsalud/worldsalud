@@ -2,10 +2,8 @@
 
 import { useState } from "react";
 import LoginView from "@/modules/auth/pages/login/shared/Login.view";
-
 export default function LoginModal() {
-  const [isOpen, setIsOpen] = useState(true); // El modal se abre por defecto
-
+  const [isOpen, setIsOpen] = useState(true); 
   return (
     isOpen && (
       <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-50">

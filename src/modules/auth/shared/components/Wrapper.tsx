@@ -28,7 +28,7 @@ export const Wrapper: React.FC<WrapperProps> = ({
         <div 
             className="h-screen w-full flex items-center justify-center bg-black"
             style={{
-                backgroundImage: 'url("https://images.unsplash.com/photo-1523398002811-999ca8dec234?q=80&w=2000&auto=format")',
+                backgroundImage: 'url("https://res.cloudinary.com/dfxps2pzh/image/upload/v1744498722/WorldSalud_mapamundi_apigyx.png")',
                 backgroundSize: 'cover',
                 backgroundPosition: 'center',
             }}

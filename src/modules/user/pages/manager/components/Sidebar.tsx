@@ -45,7 +45,7 @@ export default function Sidebar({ activeTab, setActiveTab, menuOpen, setMenuOpen
                             alt="Wold Salud"
                             width={130}
                             height={130}
-                            className="object-contain w-auto h-auto max-w-[100px]"
+                            className="object-contain w-auto h-auto"
                         />
                     </Link>
                 </div>
