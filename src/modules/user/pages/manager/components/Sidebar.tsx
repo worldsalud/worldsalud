@@ -41,8 +41,8 @@ export default function Sidebar({ activeTab, setActiveTab, menuOpen, setMenuOpen
                         <div className="flex-1 flex justify-center md:justify-start pb-12 px-2">
                     <Link href="/home">
                         <Image
-                            src="/LogoInk3d.webp"
-                            alt="Logo Ink3d"
+                            src="/worldsalud.webp"
+                            alt="Wold Salud"
                             width={130}
                             height={130}
                             className="object-contain w-auto h-auto max-w-[100px]"
