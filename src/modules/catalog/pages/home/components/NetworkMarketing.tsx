@@ -17,7 +17,7 @@ export default function NetworkMarketing() {
         <div className="flex flex-col md:flex-row items-center justify-between gap-10">
           <div className="w-full md:w-1/2">
             <Image
-              src="https://readdy.ai/api/search-image?query=A%20professional%20business%20networking%20event%20focused%20on%20health%20and%20wellness.%20People%20of%20diverse%20backgrounds%20are%20engaged%20in%20conversation%2C%20sharing%20business%20cards%2C%20and%20discussing%20opportunities.%20The%20atmosphere%20is%20positive%20and%20energetic%2C%20with%20modern%20business%20attire.%20The%20setting%20has%20professional%20lighting%20with%20a%20clean%2C%20corporate%20feel%2C%20showing%20collaboration%20and%20partnership%20in%20the%20health%20industry.&width=600&height=400&seq=network-marketing&orientation=landscape"
+              src="https://res.cloudinary.com/dfxps2pzh/image/upload/v1744338144/1ba55c35c554d9ef6106d6333115b313_kgs0y0.jpg"
               alt="Red de distribuidores"
               width={600}
               height={400}

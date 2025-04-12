@@ -64,6 +64,7 @@ import PurchaseProcess from "./components/PurchaseProcess";
 import Image from "next/image";
 import NetworkMarketing from "./components/NetworkMarketing";
 import Testimonials from "./components/Testimonials";
+import Recommendations from "./components/Recommendations";
 
 
 export default function Home() {
@@ -98,7 +99,8 @@ export default function Home() {
               src="https://res.cloudinary.com/dfxps2pzh/image/upload/v1744338144/1ba55c35c554d9ef6106d6333115b313_kgs0y0.jpg"
               alt="Bienestar natural"
               className="w-full h-full object-cover"
-
+              width={100}
+              height={100}
             />
             <div className="absolute inset-0 bg-gradient-to-r from-green-50 to-transparent"></div>
           </div>
@@ -143,156 +145,13 @@ export default function Home() {
             </div>
           </div>
         </section>
-        {/* Recommendations Section */}
-        <section className="py-16 bg-gray-50">
-          <div className="container mx-auto px-4">
-            <div className="text-center mb-12">
-              <h2 className="text-3xl font-bold text-green-800 mb-2">
-                Recomendaciones por Padecimientos
-              </h2>
-              <p className="text-gray-600 max-w-2xl mx-auto">
-                Encuentra la combinación perfecta de productos para tus
-                necesidades específicas de salud.
-              </p>
-            </div>
-            <div className="overflow-x-auto">
-              <table className="min-w-full bg-white rounded-lg overflow-hidden shadow-lg">
-                <thead className="bg-green-600 text-white">
-                  <tr>
-                    <th className="py-3 px-4 text-left">Padecimiento</th>
-                    <th className="py-3 px-4 text-left">
-                      Productos Recomendados
-                    </th>
-                    <th className="py-3 px-4 text-left">Beneficios</th>
-                    <th className="py-3 px-4 text-left">Acción</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-gray-200">
-                  <tr className="hover:bg-gray-50">
-                    <td className="py-4 px-4">
-                      <div className="flex items-center">
-                        <i className="fas fa-brain text-blue-500 mr-3 text-xl"></i>
-                        <span className="font-medium">Parkinson</span>
-                      </div>
-                    </td>
-                    <td className="py-4 px-4">
-                      <div className="flex flex-wrap gap-2">
-                        <span className="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded">
-                          PNG
-                        </span>
-                        <span className="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded">
-                          Vitamina B12
-                        </span>
-                        <span className="bg-purple-100 text-purple-800 text-xs font-medium px-2.5 py-0.5 rounded">
-                          Melatonina
-                        </span>
-                      </div>
-                    </td>
-                    <td className="py-4 px-4 text-sm text-gray-600">
-                      Reduce temblores, mejora el sueño y aumenta la energía
-                    </td>
-                    <td className="py-4 px-4">
-                      <button className="bg-green-600 hover:bg-green-700 text-white text-sm py-1 px-3 rounded !rounded-button whitespace-nowrap cursor-pointer">
-                        Comprar combo
-                      </button>
-                    </td>
-                  </tr>
-                  <tr className="hover:bg-gray-50">
-                    <td className="py-4 px-4">
-                      <div className="flex items-center">
-                        <i className="fas fa-bone text-orange-500 mr-3 text-xl"></i>
-                        <span className="font-medium">Artritis</span>
-                      </div>
-                    </td>
-                    <td className="py-4 px-4">
-                      <div className="flex flex-wrap gap-2">
-                        <span className="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded">
-                          PNG
-                        </span>
-                        <span className="bg-yellow-100 text-yellow-800 text-xs font-medium px-2.5 py-0.5 rounded">
-                          Suplemento Herbal
-                        </span>
-                      </div>
-                    </td>
-                    <td className="py-4 px-4 text-sm text-gray-600">
-                      Alivia inflamación, reduce dolor y mejora movilidad
-                    </td>
-                    <td className="py-4 px-4">
-                      <button className="bg-green-600 hover:bg-green-700 text-white text-sm py-1 px-3 rounded !rounded-button whitespace-nowrap cursor-pointer">
-                        Comprar combo
-                      </button>
-                    </td>
-                  </tr>
-                  <tr className="hover:bg-gray-50">
-                    <td className="py-4 px-4">
-                      <div className="flex items-center">
-                        <i className="fas fa-bed text-indigo-500 mr-3 text-xl"></i>
-                        <span className="font-medium">Insomnio</span>
-                      </div>
-                    </td>
-                    <td className="py-4 px-4">
-                      <div className="flex flex-wrap gap-2">
-                        <span className="bg-purple-100 text-purple-800 text-xs font-medium px-2.5 py-0.5 rounded">
-                          Melatonina
-                        </span>
-                        <span className="bg-yellow-100 text-yellow-800 text-xs font-medium px-2.5 py-0.5 rounded">
-                          Suplemento Herbal
-                        </span>
-                      </div>
-                    </td>
-                    <td className="py-4 px-4 text-sm text-gray-600">
-                      Regula ciclo de sueño, reduce ansiedad y promueve descanso
-                    </td>
-                    <td className="py-4 px-4">
-                      <button className="bg-green-600 hover:bg-green-700 text-white text-sm py-1 px-3 rounded !rounded-button whitespace-nowrap cursor-pointer">
-                        Comprar combo
-                      </button>
-                    </td>
-                  </tr>
-                  <tr className="hover:bg-gray-50">
-                    <td className="py-4 px-4">
-                      <div className="flex items-center">
-                        <i className="fas fa-heartbeat text-red-500 mr-3 text-xl"></i>
-                        <span className="font-medium">Hipertensión</span>
-                      </div>
-                    </td>
-                    <td className="py-4 px-4">
-                      <div className="flex flex-wrap gap-2">
-                        <span className="bg-green-100 text-green-800 text-xs font-medium px-2.5 py-0.5 rounded">
-                          PNG
-                        </span>
-                        <span className="bg-yellow-100 text-yellow-800 text-xs font-medium px-2.5 py-0.5 rounded">
-                          Suplemento Herbal
-                        </span>
-                        <span className="bg-blue-100 text-blue-800 text-xs font-medium px-2.5 py-0.5 rounded">
-                          Vitamina B12
-                        </span>
-                      </div>
-                    </td>
-                    <td className="py-4 px-4 text-sm text-gray-600">
-                      Equilibra presión arterial, mejora circulación y reduce
-                      estrés
-                    </td>
-                    <td className="py-4 px-4">
-                      <button className="bg-green-600 hover:bg-green-700 text-white text-sm py-1 px-3 rounded !rounded-button whitespace-nowrap cursor-pointer">
-                        Comprar combo
-                      </button>
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-            <div className="text-center mt-10">
-              <button className="bg-white border-2 border-green-600 text-green-600 hover:bg-green-50 font-semibold py-2 px-6 rounded-lg transition-colors duration-200 !rounded-button whitespace-nowrap cursor-pointer">
-                Ver todas las recomendaciones
-              </button>
-            </div>
-          </div>
-        </section>
+
+
+        
 
 
 
-
+        <Recommendations />
         <Testimonials />
         <NetworkMarketing />
         <PurchaseProcess />

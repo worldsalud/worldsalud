@@ -9,7 +9,7 @@ const testimonials = [
     rating: 5,
     comment:
       "Los parches PNG cambiaron mi vida. Después de años sufriendo de dolores articulares, finalmente encontré algo que realmente funciona. ¡Increíble!",
-    img: "https://readdy.ai/api/search-image?query=Professional%20headshot%20portrait%20of%20a%20middle-aged%20Hispanic%20woman%20with%20short%20dark%20hair%20and%20a%20warm%20smile.&width=100&height=100&seq=testimonial-1&orientation=squarish",
+    img: "https://res.cloudinary.com/dfxps2pzh/image/upload/v1744338144/1ba55c35c554d9ef6106d6333115b313_kgs0y0.jpg",
   },
   {
     name: "Carlos Rodríguez",
@@ -17,16 +17,16 @@ const testimonials = [
     rating: 4.5,
     comment:
       "La combinación de Vitamina B12 y Melatonina ha mejorado enormemente mi calidad de sueño. Además, la oportunidad de negocio me ha permitido generar ingresos extra.",
-    img: "https://readdy.ai/api/search-image?query=Professional%20headshot%20portrait%20of%20a%20senior%20Hispanic%20man%20in%20his%2060s%20with%20gray%20hair%20and%20glasses.&width=100&height=100&seq=testimonial-2&orientation=squarish",
-  },
+      img: "https://res.cloudinary.com/dfxps2pzh/image/upload/v1744338144/1ba55c35c554d9ef6106d6333115b313_kgs0y0.jpg",
+    },
   {
     name: "Ana Martínez",
     location: "Valencia, España",
     rating: 5,
     comment:
       "No solo he notado una gran mejora en mi salud, sino que también he construido un negocio próspero compartiendo estos increíbles productos con mi comunidad.",
-    img: "https://readdy.ai/api/search-image?query=Professional%20headshot%20portrait%20of%20a%20young%20Hispanic%20woman%20in%20her%2030s%20with%20long%20dark%20hair.&width=100&height=100&seq=testimonial-3&orientation=squarish",
-  },
+      img: "https://res.cloudinary.com/dfxps2pzh/image/upload/v1744338144/1ba55c35c554d9ef6106d6333115b313_kgs0y0.jpg",
+    },
 ];
 
 export default function Testimonials() {
