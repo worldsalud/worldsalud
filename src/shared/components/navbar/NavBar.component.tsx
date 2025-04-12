@@ -191,11 +191,6 @@ export default function NavBar() {
     }
   };
 
-  // const handlePlayTrivia = () => {
-  //   if (!isAuthenticated) return;
-  //   router.push("/sales");
-  // };
-
   useEffect(() => {
     document.body.style.overflow = menu ? "hidden" : "";
     return () => {
@@ -216,7 +211,7 @@ export default function NavBar() {
       {/* NAVBAR PRINCIPAL */}
 
 
-      <div className="w-full bg-white text-black h-20 flex items-center justify-between px-4 md:px-8 z-50 shadow-md">
+      <div className="w-full bg-white text-black h-25 flex items-center justify-between px-4 md:px-8 z-50 shadow-md">
         {/* Botón menú hamburguesa */}
         <div className="md:hidden cursor-pointer" onClick={handleToggleMenu}>
           {menu ? <X size={24} color="gray" /> : <Menu size={24} color="gray" />}
@@ -230,8 +225,8 @@ export default function NavBar() {
               alt="world salud"
               width={260}
               height={260}
-              className="object-contain w-auto h-auto max-w-[100px]"
-            />
+              className="object-contain w-auto h-auto max-w-[140px] md:max-w-[180px] transition-transform duration-300"
+              />
           </Link>
         </div>
 
@@ -246,12 +241,12 @@ export default function NavBar() {
         </div>
 
         {/* Navegación escritorio */}
-        <div className="hidden md:flex items-center gap-6 px-6 text-black">
-          <Link href="/magazine" className="text-white hover:text-[#0FCBB8]">Magazine</Link>
-          <Link href="/categories" className="text-white hover:text-[#0FCBB8]">Categorías</Link>
-          <Link href="/recomendations" className="text-white hover:text-[#0FCBB8]">Recomendaciones</Link>
-          <Link href="/testimonials" className="text-white hover:text-[#0FCBB8]">Testimonios</Link>
-          <Link href="/affiliates" className="text-white hover:text-[#0FCBB8]">Afíliate</Link>
+        <div className="hidden md:flex items-center gap-6 px-6 text-[#0FCBB8]">
+          <Link href="/magazine" className="hover:brightness-125 transition duration-200">Magazine</Link>
+          <Link href="/categories" className="hover:brightness-125 transition duration-200">Categorías</Link>
+          <Link href="/recomendations" className="hover:brightness-125 transition duration-200">Recomendaciones</Link>
+          <Link href="/testimonials" className="hover:brightness-125 transition duration-200">Testimonios</Link>
+          <Link href="/affiliates" className="hover:brightness-125 transition duration-200">Afíliate</Link>
         </div>
 
         {/* Menú usuario */}
@@ -293,9 +288,20 @@ export default function NavBar() {
             <UserMenu avatarUrl="/avatar.webp" />
           ) : (
             <>
-              <Link href="/login" className="text-white hover:text-[#0FCBB8]">Iniciar sesión</Link>
-              <Link href="/signup" className="text-white hover:text-[#0FCBB8]">Crear cuenta</Link>
+              <Link
+                href="/login"
+                className="text-[#0FCBB8] hover:brightness-125 transition duration-200"
+              >
+                Iniciar sesión
+              </Link>
+              <Link
+                href="/signup"
+                className="text-[#0FCBB8] hover:brightness-125 transition duration-200"
+              >
+                Crear cuenta
+              </Link>
             </>
+
           )}
         </div>
       </div>
