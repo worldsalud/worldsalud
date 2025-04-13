@@ -11,14 +11,8 @@ export default function Manager() {
 
   return (
     <ProtectedRouteAdmin>
-      <div className="flex bg-white text-black min-h-screen">
-        {/* Sidebar fijo sin superponer el contenido */}
+      <div className="flex bg-white text-black min-h-full">
         <Sidebar activeTab={activeTab} setActiveTab={setActiveTab} menuOpen={menuOpen} setMenuOpen={setMenuOpen} />
-        
-        {/* Espacio reservado para el Sidebar en pantallas grandes */}
-        <div className="hidden md:block w-80"></div>
-
-        {/* Contenido principal que ocupa el resto del espacio */}
         <main className="flex-1 p-6 overflow-auto">
           <MainContent activeTab={activeTab} />
         </main>

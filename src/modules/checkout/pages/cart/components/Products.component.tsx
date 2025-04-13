@@ -104,7 +104,7 @@ export const ProductsComponent = () => {
         <section className="bg-gray-50 py-12 z-0">
             <div className="container mx-auto px-4">
                 <h2 className="text-center text-3xl font-bold text-gray-800 mb-8">
-                    Tops INK3DS: Lo mejor de la semana para ti
+                    Tops World Salud: Lo mejor de la semana para ti
                 </h2>
                 <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
                     {
