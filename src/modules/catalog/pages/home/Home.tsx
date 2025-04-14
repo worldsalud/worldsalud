@@ -90,11 +90,6 @@ export default function Home() {
           </div>
         </section>
 
-
-        
-
-
-
         <Recommendations />
         <Testimonials />
         <NetworkMarketing />

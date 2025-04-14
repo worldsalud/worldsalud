@@ -394,7 +394,7 @@
 //   const { createProduct } = useProducts();
 //   const { categories, createCategory, error } = useCategories();
 //   const [cloudinary, setCloudinary] = useState<string[]>([]);
-  
+
 //   // Estado de imágenes
 //   const [images, setImages] = useState<(string | null)[]>(Array(MAX_IMAGES).fill(null));
 
@@ -499,21 +499,21 @@
 //   return (
 //     <form onSubmit={handleSubmit} className="space-y-8 bg-gray-50 p-8 rounded-lg shadow-xl">
 //       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 bg-white p-6 rounded-lg shadow-lg">
-        
+
 //         {/* Descripción del Producto */}
 //         <ProductDescription
 //           name={formProduct.name} 
 //           description={formProduct.description} 
 //           onChange={handleChangeProduct}
 //         />
-        
+
 //         {/* Carga de Imágenes */}
 //         <ImageUploader 
 //           images={images} 
 //           onImageChange={handleImageChange} 
 //           onRemoveImage={handleRemoveImage} 
 //         />
-        
+
 //         {/* Precio y Stock */}
 //         <PriceAndStock
 //           price={formProduct.price} 
@@ -521,7 +521,7 @@
 //           onChange={handleChangeProduct} 
 //           onKeyDown={handleOnKeyDown} 
 //         />
-        
+
 //         {/* Selectores (Estilo, Categoría, Talla, Color) */}
 //         <Selectors
 //           style={formProduct.style} 
@@ -549,7 +549,7 @@
 
 //       {/* Opcional: El componente PlusOption */}
 //       <PlusOption formProduct={formProduct} setFormProduct={setFormProduct} />
-      
+
 //       <button type="submit" className="w-full bg-blue-500 text-white p-4 rounded-lg hover:bg-blue-600 mt-4">
 //         Subir Producto
 //       </button>
@@ -656,31 +656,31 @@ export default function FormCreateProduct({ productToEdit }: FormCreateProductPr
     }
   };
 
-  // const handleChangeProduct = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
-  //   const { name, value } = e.target;
-  //   setFormProduct({
-  //     ...formProduct,
-  //     [name]: value,
-  //   });
-  // };
-
   const handleChangeProduct = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
     const { name, value } = e.target;
-  
-    if (name === "price" || name === "stock") {
-      const parsedValue = value === "" ? 0 : parseFloat(value); 
-      setFormProduct({
-        ...formProduct,
-        [name]: parsedValue,
-      });
-    } else {
-      setFormProduct({
-        ...formProduct,
-        [name]: value,
-      });
-    }
+    setFormProduct({
+      ...formProduct,
+      [name]: value,
+    });
   };
-  
+
+  // const handleChangeProduct = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement | HTMLSelectElement>) => {
+  //   const { name, value } = e.target;
+
+  //   if (name === "price" || name === "stock") {
+  //     const parsedValue = value === "" ? 0 : parseFloat(value); 
+  //     setFormProduct({
+  //       ...formProduct,
+  //       [name]: parsedValue,
+  //     });
+  //   } else {
+  //     setFormProduct({
+  //       ...formProduct,
+  //       [name]: value,
+  //     });
+  //   }
+  // };
+
   const handleCreateCategory = (e: React.SyntheticEvent) => {
     e.preventDefault();
     if (!newCategory) {
@@ -759,61 +759,59 @@ export default function FormCreateProduct({ productToEdit }: FormCreateProductPr
   return (
     <form onSubmit={handleSubmit} className="space-y-8 bg-gray-50 p-8 rounded-lg shadow-xl">
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8 bg-white p-6 rounded-lg shadow-lg">
-        
+
         {/* Descripción del Producto */}
         <ProductDescription
-          name={formProduct.name} 
-          description={formProduct.description} 
+          name={formProduct.name}
+          description={formProduct.description}
           onChange={handleChangeProduct}
         />
-        
+
         {/* Carga de Imágenes */}
-        <ImageUploader 
-          images={images} 
-          onImageChange={handleImageChange} 
-          onRemoveImage={handleRemoveImage} 
+        <ImageUploader
+          images={images}
+          onImageChange={handleImageChange}
+          onRemoveImage={handleRemoveImage}
         />
-        
+
         {/* Precio y Stock */}
 
         <PriceAndStock
-  price={formProduct.price === "" ? 0 : formProduct.price} // Si es "", asigna 0
-  stock={formProduct.stock === "" ? 0 : formProduct.stock} // Si es "", asigna 0
-  onChange={handleChangeProduct}
-  onKeyDown={handleOnKeyDown}
-/>
-
-
+          price={formProduct.price === "" ? 0 : formProduct.price} 
+          stock={formProduct.stock === "" ? 0 : formProduct.stock} 
+          onChange={handleChangeProduct}
+          onKeyDown={handleOnKeyDown}
+        />
         <Selectors
-  style={formProduct.style} 
-  category={formProduct.category} 
-  size={formProduct.size} 
-  color={formProduct.color} 
-  sizes={sizes} 
-  colors={colorins} 
-  categories={categories.map(cat => ({
-    id: Number(cat.id), 
-    name: cat.name,
-  }))} 
-  onChange={handleChangeProduct} 
-  onCreateCategory={() => setIsModalOpen(true)} 
-/>
+          style={formProduct.style}
+          category={formProduct.category}
+          size={formProduct.size}
+          color={formProduct.color}
+          sizes={sizes}
+          colors={colorins}
+          categories={categories.map(cat => ({
+            id: Number(cat.id),
+            name: cat.name,
+          }))}
+          onChange={handleChangeProduct}
+          onCreateCategory={() => setIsModalOpen(true)}
+        />
 
       </div>
 
       {/* Modal para Crear Categoría */}
       {isModalOpen && (
-        <ModalCreateCategory 
-          value={newCategory} 
-          onChange={(e) => setNewCategory(e.target.value)} 
-          onCancel={() => setIsModalOpen(false)} 
-          onCreate={handleCreateCategory} 
+        <ModalCreateCategory
+          value={newCategory}
+          onChange={(e) => setNewCategory(e.target.value)}
+          onCancel={() => setIsModalOpen(false)}
+          onCreate={handleCreateCategory}
         />
       )}
 
       {/* Opcional: El componente PlusOption */}
       <PlusOption formProduct={formProduct} setFormProduct={setFormProduct} />
-      
+
       <button type="submit" className="w-full bg-blue-500 text-white p-4 rounded-lg hover:bg-blue-600 mt-4">
         {productToEdit ? "Actualizar Producto" : "Subir Producto"}
       </button>
