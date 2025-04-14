@@ -112,7 +112,7 @@ const MagazinePage: React.FC = () => {
         </div>
       </nav>
       <h1 className="text-5xl font-bold text-center uppercase tracking-widest py-5 mt-20 mb-10">
-        {category && category !== "Todas" ? category : "INK3D Magazine"}
+        {category && category !== "Todas" ? category : "World Salud"}
       </h1>
 
       <div className="grid md:grid-cols-3 sm:grid-cols-2 gap-6">
