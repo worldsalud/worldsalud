@@ -225,6 +225,16 @@ type Recommendation = {
   comentarios: string;
 };
 
+type APIRecommendation = {
+  id: number;
+  padecimiento: string;
+  comentarios: string;
+  productosRecomendados: {
+    id: number;
+    name: string;
+  }[];
+};
+
 function getColorClass(nombreCompleto: string): string {
   const keys = Object.keys(productColors);
   const match = keys.find((key) => nombreCompleto.toLowerCase().includes(key.toLowerCase()));
@@ -241,15 +251,16 @@ export default function Recommendations() {
       try {
         const res = await fetch(`${API_BACK}/recommendations`);
         if (!res.ok) throw new Error("Error al obtener recomendaciones");
-        const data = await res.json();
   
-        const adaptedData: Recommendation[] = data.map((item: any) => ({
+        const data: APIRecommendation[] = await res.json();
+  
+        const adaptedData: Recommendation[] = data.map((item) => ({
           id: item.id,
           padecimiento: item.padecimiento,
           comentarios: item.comentarios,
-          productosRecomendados: item.productosRecomendados.map((prod: any) => ({
+          productosRecomendados: item.productosRecomendados.map((prod) => ({
             id: prod.id,
-            nombre: prod.name, 
+            nombre: prod.name,
           })),
         }));
   
@@ -263,7 +274,6 @@ export default function Recommendations() {
   
     fetchRecommendations();
   }, []);
-  
 
   if (loading)
     return <p className="text-center py-10 text-gray-500">Cargando recomendaciones...</p>;
