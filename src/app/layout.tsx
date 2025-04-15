@@ -7,7 +7,7 @@ import { ProductsProvider } from "../modules/user/pages/manager/context/Products
 import Chatbot from "../shared/components/Chatbot";
 import LocationPathname from "../shared/helpers/LocationPathname";
 import Footer from "../shared/components/footer/footer";
-import ScrollToTop from "../shared/components/buttons/UpButton.component";
+// import ScrollToTop from "../shared/components/buttons/UpButton.component";
 import NavBar from "../shared/components/navbar/NavBar.component";
 import WhatsappButton from "@/shared/components/WhatsappButton";
 export const metadata: Metadata = {
