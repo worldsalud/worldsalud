@@ -1,11 +1,8 @@
 "use client";
-
 import { useEffect, useState } from "react";
 import { API_BACK } from "@/shared/config/api/getEnv";
 import { useCart } from "@/modules/checkout/pages/cart/context/Cart.context";
 import Link from "next/link";
-
-
 const productColors: Record<string, string> = {
   PNG: "bg-green-100 text-green-800",
   "Vitamina B12": "bg-blue-100 text-blue-800",
@@ -16,10 +13,9 @@ const productColors: Record<string, string> = {
   Dekamin: "bg-orange-100 text-orange-800",
   Night: "bg-indigo-100 text-indigo-800",
   Slim: "bg-lime-100 text-lime-800",
-  Ladies: "bg-rose-100 text-rose-800",
+  Lady: "bg-rose-100 text-rose-800",
   Gentlemen: "bg-cyan-100 text-cyan-800",
 };
-
 type Recommendation = {
   id: number;
   padecimiento: string;
@@ -29,7 +25,6 @@ type Recommendation = {
   }[];
   comentarios: string;
 };
-
 type APIRecommendation = {
   id: number;
   padecimiento: string;
@@ -39,31 +34,38 @@ type APIRecommendation = {
     name: string;
   }[];
 };
-
 function getColorClass(nombreCompleto: string): string {
   const keys = Object.keys(productColors);
   const match = keys.find((key) => nombreCompleto.toLowerCase().includes(key.toLowerCase()));
   return productColors[match || ""] || "bg-gray-100 text-gray-800";
 }
-
 interface RecommendationsProps {
   showLimited?: boolean;
 }
-
 export default function Recommendations({ showLimited = false }: RecommendationsProps) {
   const { handleAddToCart } = useCart();
   const [recommendations, setRecommendations] = useState<Recommendation[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-
+  const [searchTerm, setSearchTerm] = useState("");
+  const [comboPrices, setComboPrices] = useState<Record<number, number>>({});
+  const getComboTotalPrice = async (productos: { id: number }[]) => {
+    let total = 0;
+    for (const producto of productos) {
+      const res = await fetch(`${API_BACK}/products/${producto.id}`);
+      if (res.ok) {
+        const prod = await res.json();
+        total += parseFloat(prod.price || 0);
+      }
+    }
+    return total;
+  };
   useEffect(() => {
     const fetchRecommendations = async () => {
       try {
         const res = await fetch(`${API_BACK}/recommendations`);
         if (!res.ok) throw new Error("Error al obtener recomendaciones");
-
         const data: APIRecommendation[] = await res.json();
-
         const adaptedData: Recommendation[] = data.map((item) => ({
           id: item.id,
           padecimiento: item.padecimiento,
@@ -75,54 +77,64 @@ export default function Recommendations({ showLimited = false }: Recommendations
         }));
 
         setRecommendations(adaptedData);
+        const priceMap: Record<number, number> = {};
+
+        for (const rec of adaptedData) {
+          const total = await getComboTotalPrice(rec.productosRecomendados);
+          priceMap[rec.id] = total;
+        }
+
+        setComboPrices(priceMap);
+
       } catch (err) {
         setError((err as Error).message);
       } finally {
         setLoading(false);
       }
     };
-
     fetchRecommendations();
   }, []);
-
-const handleAddComboToCart = async (productosRecomendados: { id: number; nombre: string }[]) => {
-  setLoading(true);
-
-  try {
-    // Iteramos sobre cada producto recomendado
-    for (const producto of productosRecomendados) {
-      const response = await fetch(`${API_BACK}/products/${producto.id}`);
-      if (!response.ok) {
-        throw new Error(`Error al obtener el producto con ID ${producto.id}`);
+  const handleAddComboToCart = async (productosRecomendados: { id: number; nombre: string }[]) => {
+    setLoading(true);
+    try {
+      // Iteramos sobre cada producto recomendado
+      for (const producto of productosRecomendados) {
+        const response = await fetch(`${API_BACK}/products/${producto.id}`);
+        if (!response.ok) {
+          throw new Error(`Error al obtener el producto con ID ${producto.id}`);
+        }
+        const product = await response.json();
+        handleAddToCart({
+          id: product.id,
+          name: product.name,
+          price: parseFloat(product.price),
+          stock: product.stock,
+          size: product.size,
+          image: product.image,
+          style: product.style || 'Sin estilo',
+          units: product.units || '1 unidad',
+          discount: product.discount || 0,
+          description: product.description || 'Sin descripción',
+          category: product.category || { id: 'default', name: 'General' },
+        });
       }
-
-      const product = await response.json();
-
-      handleAddToCart({
-        id: product.id,
-        name: product.name,
-        price: parseFloat(product.price),
-        stock: product.stock,
-        size: product.size,
-        image: product.image, 
-        style: product.style || 'Sin estilo', 
-        units: product.units || '1 unidad', 
-        discount: product.discount || 0, 
-        description: product.description || 'Sin descripción', 
-        category: product.category || { id: 'default', name: 'General' }, 
-      });
+    } catch (error) {
+      console.error("Error al agregar el combo al carrito:", error);
+    } finally {
+      setLoading(false);
     }
-  } catch (error) {
-    console.error("Error al agregar el combo al carrito:", error);
-  } finally {
-    setLoading(false);
-  }
-};
+  };
   if (loading)
     return <p className="text-center py-10 text-gray-500">Cargando recomendaciones...</p>;
   if (error)
     return <p className="text-center py-10 text-red-500">Error: {error}</p>;
-  const recommendationsToShow = showLimited ? recommendations.slice(0, 8) : recommendations;
+  const recommendationsToShow = (showLimited ? recommendations.slice(0, 8) : recommendations).filter(
+    (item) =>
+      item.padecimiento.toLowerCase().includes(searchTerm.toLowerCase()) ||
+      item.productosRecomendados.some((prod) =>
+        prod.nombre.toLowerCase().includes(searchTerm.toLowerCase())
+      )
+  );
   return (
     <section className="py-16 bg-gray-50">
       <div className="container mx-auto px-4">
@@ -136,6 +148,15 @@ const handleAddComboToCart = async (productosRecomendados: { id: number; nombre:
           </p>
         </div>
         <div className="overflow-x-auto">
+          <div className="text-center mb-6">
+            <input
+              type="text"
+              placeholder="Buscar por producto o padecimiento..."
+              value={searchTerm}
+              onChange={(e) => setSearchTerm(e.target.value)}
+              className="border border-gray-300 px-4 py-2 rounded-md w-full max-w-md"
+            />
+          </div>
           <table className="min-w-full bg-white rounded-lg overflow-hidden shadow-lg">
             <thead className="bg-green-600 text-white">
               <tr>
@@ -167,7 +188,21 @@ const handleAddComboToCart = async (productosRecomendados: { id: number; nombre:
                   <td className="py-4 px-4 text-sm text-gray-600">
                     {item.comentarios || "-"}
                   </td>
+
+
                   <td className="py-4 px-4">
+                    <p className="text-sm text-gray-700 mb-1">
+                      Precio total:{" "}
+                      <span className="font-semibold text-green-700">
+                      {comboPrices[item.id] !== undefined
+  ? comboPrices[item.id].toLocaleString("es-CO", {
+      style: "currency",
+      currency: "COP",
+      minimumFractionDigits: 0,
+    })
+  : "-"}
+                      </span>
+                    </p>
                     <button
                       className="bg-green-600 hover:bg-green-700 text-white text-sm py-1 px-3 rounded whitespace-nowrap cursor-pointer"
                       onClick={() => handleAddComboToCart(item.productosRecomendados)}
@@ -176,6 +211,9 @@ const handleAddComboToCart = async (productosRecomendados: { id: number; nombre:
                       {loading ? "Cargando..." : "Comprar combo"}
                     </button>
                   </td>
+
+
+
                 </tr>
               ))}
             </tbody>

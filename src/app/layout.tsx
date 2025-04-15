@@ -9,6 +9,7 @@ import LocationPathname from "../shared/helpers/LocationPathname";
 import Footer from "../shared/components/footer/footer";
 import ScrollToTop from "../shared/components/buttons/UpButton.component";
 import NavBar from "../shared/components/navbar/NavBar.component";
+import WhatsappButton from "@/shared/components/WhatsappButton";
 export const metadata: Metadata = {
   title: "World-Salud",
   description: "La salud nuestra prioridad",
@@ -28,9 +29,10 @@ export default function RootLayout({
           <CartProvider>
             <LocationPathname redirectRoutes={["/login", "/signup"]}>
               <NavBar />
-              <main className="flex-grow bg-[#D9D9D9]">
-                <ScrollToTop />
+              <main className="flex-grow bg-[#D9D9D9]"> 
                 <Chatbot />
+                {/* <ScrollToTop />  */}
+                <WhatsappButton />
                 {children}
               </main>
             </LocationPathname>
