@@ -1,6 +1,6 @@
 "use client";
 
-import {FaFacebookF,FaInstagram,FaTwitter,FaYoutube,FaCcVisa,FaCcMastercard,FaCcAmex,FaCcPaypal,FaPaperPlane,} from "react-icons/fa";
+import { FaFacebookF, FaInstagram, FaCcVisa, FaCcMastercard, FaCcAmex, FaCcPaypal, FaPaperPlane, FaTiktok, } from "react-icons/fa";
 
 export default function Footer() {
   return (
@@ -14,18 +14,19 @@ export default function Footer() {
               Transformando vidas a través de productos naturales y oportunidades de negocio desde 2020.
             </p>
             <div className="flex space-x-4">
-              <a href="#" className="text-gray-300 hover:text-white transition-colors duration-200">
+              <a href="https://www.facebook.com/share/1FvdHmTrZu/" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-white transition-colors duration-200">
                 <FaFacebookF />
               </a>
-              <a href="#" className="text-gray-300 hover:text-white transition-colors duration-200">
+              <a href="https://www.instagram.com/worldsaludoficial?igsh=MXNkOXkxNm14aHczeQ==" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-white transition-colors duration-200">
                 <FaInstagram />
               </a>
-              <a href="#" className="text-gray-300 hover:text-white transition-colors duration-200">
-                <FaTwitter />
+              <a href="https://www.tiktok.com/@worldsalud?_t=ZS-8vSZJbwpsu2&_r=1" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-white transition-colors duration-200">
+                <FaTiktok />
               </a>
-              <a href="#" className="text-gray-300 hover:text-white transition-colors duration-200">
+              {/* 
+              <a href="#" target="_blank" rel="noopener noreferrer" className="text-gray-300 hover:text-white transition-colors duration-200">
                 <FaYoutube />
-              </a>
+              </a> */}
             </div>
           </div>
 

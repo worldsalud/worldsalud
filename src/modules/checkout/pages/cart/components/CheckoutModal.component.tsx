@@ -30,7 +30,7 @@ const CheckoutModal = ({ setOnClose, validDiscount, discountAmount}: { setOnClos
           const userBuyer = getIdUser(localStorage.getItem("token") || "");
           const confirmedCart: ICartProduct[] = JSON.parse(localStorage.getItem(`cart_${userBuyer}`) || "[]");
           const { orderId } = await confirmOrderService(userBuyer, confirmedCart, token, validDiscount);
-          const response = await paymentCreateService(orderId, "ARS", confirmedCart, token, discountAmount);
+          const response = await paymentCreateService(orderId, "COL", confirmedCart, token, discountAmount);
           const link = Object.values(response)[0];
           window.location.href = link;
 
@@ -159,12 +159,6 @@ const CheckoutModal = ({ setOnClose, validDiscount, discountAmount}: { setOnClos
             </form>
           </div>
         </div>
-
-
-
-
-
-
 
       // <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50 p-4">
       //   <div className="bg-white rounded-2xl max-w-lg w-full">
