@@ -43,7 +43,6 @@ export default function Footer() {
               ))}
             </ul>
           </div>
-
           {/* Columna 3 - Legal */}
           <div>
             <h3 className="text-lg font-bold mb-4">Legal</h3>

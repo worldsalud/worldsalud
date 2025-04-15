@@ -72,8 +72,8 @@ export default function NavBar() {
         </div>
         {/* Navegación escritorio */}
         <div className="hidden md:flex items-center gap-6 px-6 text-[#0FCBB8]">
-          <Link href="/magazine" className="hover:brightness-125 transition duration-200">Magazine</Link>
-          <Link href="/categories" className="hover:brightness-125 transition duration-200">Categorías</Link>
+          <Link href="/magazine" className="hover:brightness-125 transition duration-200">Artículos de Salud</Link>
+          <Link href="/products" className="hover:brightness-125 transition duration-200">Productos</Link>
           <Link href="/recomendations" className="hover:brightness-125 transition duration-200">Recomendaciones</Link>
           <Link href="/testimonials" className="hover:brightness-125 transition duration-200">Testimonios</Link>
           <Link href="/affiliates" className="hover:brightness-125 transition duration-200">Afíliate</Link>
