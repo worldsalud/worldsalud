@@ -10,7 +10,6 @@ export default function Cart() {
       <div className="min-h-screen bg-gray-300 pb-2">
         <BackButton tab="Producto" />
         <div className="relative py-14">
-          {/* 🎨 Fondo con desenfoque (ahora correctamente detrás) */}
           <div
             className="absolute inset-0 bg-repeat blur-xl "
             style={{

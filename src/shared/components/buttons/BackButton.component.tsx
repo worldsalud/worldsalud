@@ -1,16 +1,10 @@
 "use client"
 
-// Boton para implementar en cada ruta, regresa a la ruta anterior
-
 import { ArrowLeft } from 'lucide-react';
 import { useRouter } from 'next/navigation';
-import React from 'react'
-
 interface BackButtonProps {
     tab: string;
 }
-
-
 export default function BackButton( { tab }: BackButtonProps ) {
 
     const router = useRouter();
