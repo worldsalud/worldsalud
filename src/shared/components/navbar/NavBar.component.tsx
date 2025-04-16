@@ -14,14 +14,11 @@ export default function NavBar() {
   const { isAuthenticated } = useAuth();
   const { countProducts } = useCart();
   const router = useRouter();
-
   const [menu, setMenu] = useState(false);
   const [searchVisible, setSearchVisible] = useState(false);
   const [searchQuery, setSearchQuery] = useState("");
-
   const handleToggleMenu = () => setMenu((prev) => !prev);
   const toggleSearch = () => setSearchVisible((prev) => !prev);
-
   const handleSearch = (event: React.KeyboardEvent<HTMLInputElement>) => {
     if (event.key === "Enter" && searchQuery.trim() !== "") {
       router.push(`/search?query=${encodeURIComponent(searchQuery)}`);
@@ -41,7 +38,6 @@ export default function NavBar() {
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
   }, []);
-
   return (
     <div>
       <div className="w-full bg-white text-black h-25 flex items-center justify-between px-4 md:px-8 z-50 shadow-md">
@@ -66,9 +62,16 @@ export default function NavBar() {
           <Link href="/search">
             <Search size={24} color="gray" className="cursor-pointer" />
           </Link>
-          <Link href="/cart">
-            <ShoppingCart size={24} color="gray" />
-          </Link>
+          <Link href="/cart" className="relative">
+  {isAuthenticated && countProducts() > 0 && (
+    <div className="bg-[#0FCBB8] w-4 h-4 rounded-full flex justify-center items-center absolute -top-2 -right-2">
+      <span className="text-[10px] font-semibold text-gray-900">
+        {countProducts()}
+      </span>
+    </div>
+  )}
+  <ShoppingCart size={24} color="gray" />
+</Link>
         </div>
         {/* Navegación escritorio */}
         <div className="hidden md:flex items-center gap-6 px-6 text-[#0FCBB8]">
@@ -136,8 +139,8 @@ export default function NavBar() {
       </div>
       {/* Menú móvil */}
       <div
-        className={`fixed top-20 left-0 min-w-full h-[calc(100vh-80px)] bg-white z-40 overflow-y-auto transform transition-transform duration-300 ${menu ? "translate-x-0" : "-translate-x-full"}`}>
-        <HamburguerMenu handleToggle={handleToggleMenu} />
+        className={`fixed top-20 left-0 w-[80%] sm:w-[60%] md:w-[400px] max-w-full h-auto max-h-[80vh] bg-white rounded-tr-2xl rounded-br-2xl shadow-lg z-40 overflow-y-auto transform transition-transform duration-300 ${menu ? "translate-x-0" : "-translate-x-full"}`}>       
+        <HamburguerMenu handleToggle={handleToggleMenu}/>
       </div>
     </div>
   );
