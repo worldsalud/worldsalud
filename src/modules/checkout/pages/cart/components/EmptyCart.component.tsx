@@ -5,8 +5,8 @@ export default function EmptyCart() {
     return (
         <>
             <div className="lg:w-[70%] min-h-[100px] w-full">
-                <div className="flex justify-between items-center rounded-lg bg-white h-full px-4 shadow-gray-300 shadow-md">
-                    <Image src="/images/logo-cart.png" alt="logo-cart" width={80} height={80}/>
+            <div className="flex flex-col items-center justify-center gap-4 bg-white rounded-xl p-6 shadow-md text-center">
+            <Image src="/images/logo-cart.png" alt="logo-cart" width={80} height={80}/>
                     <span className="text-gray-900 font-semibold">Aquí podrás ver tus productos</span>
                     <Link href={"/products"} className="text-blue-500">Descubrir productos</Link>
                 </div>

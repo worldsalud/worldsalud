@@ -5,8 +5,8 @@ import { useSearchParams } from "next/navigation";
 import FilterCategories from "./components/FilterCategories.component";
 import { API_BACK } from "@/shared/config/api/getEnv";
 import ProductCards from "./components/ProductCards";
-import Link from "next/link";
 import SkeletonProducts from "@/modules/checkout/pages/cart/components/SkeletonProducts";
+import StyleFilterBar from "@/shared/components/StyleFilterBar";
 
 interface Product {
   id: string;
@@ -30,7 +30,6 @@ export default function ProductsPage() {
   const [error, setError] = useState<string | null>(null);
   const initialCategory = searchParams.get("category") || null;
   const [selectedCategory, setSelectedCategory] = useState<string | null>(initialCategory);
-  const allStyles = ["Streetwear", "Asian", "Motorsport"];
   const getStyleClasses = (style: string | undefined) => {
     if (!style) return "bg-blue-500 text-white";
     const normalizedStyle = style.trim().toLowerCase();
@@ -74,41 +73,18 @@ export default function ProductsPage() {
   const uniqueProducts = Array.from(
     new Map(filteredByCategory.map((product) => [product.name, product])).values()
   );
+
+
   return (
 <div className="relative flex flex-col min-h-screen">
-  <div
-    className="absolute inset-0 bg-repeat blur-xl "
-    style={{
-      backgroundImage: "url('/images/textures/8.jpg')",
-      backgroundSize: "1000px", 
-      backgroundPosition: "center",
-      backgroundRepeat: "repeat", 
-      filter: "blur(10px)", 
-    }}
-  />
-  <div className="absolute inset-0 bg-white/30"></div>
+
+
+<div className="absolute inset-0 bg-white" />
+
+
+
     <div className="min-h-screen pb-2 relative index-90">
-<div className="flex overflow-x-auto space-x-2 p-4 bg-black shadow-md sticky top-0 z-10">
-  <Link
-    href="/products"
-    className={`px-4 py-2 text-white rounded-full text-sm hover:bg-gray-900 ${
-      !selectedStyle ? "border-b-2 border-white" : ""
-    }`}
-  >
-    Todos
-  </Link>
-  {allStyles.map((style) => (
-    <Link
-      key={style}
-      href={`/products?style=${style}`}
-      className={`px-4 py-2 text-white rounded-full text-sm hover:bg-gray-900 ${
-        selectedStyle?.toLowerCase() === style.toLowerCase() ? "border-b-2 border-white" : ""
-      }`}
-    >
-      {style}
-    </Link>
-  ))}
-</div>
+      <StyleFilterBar basePath="/products" />
       <div className="max-w-9xl mx-auto my-6 bg-gray-100 rounded-lg p-0 border border-gray-300 shadow-md pb-5">
         <div className="flex justify-between items-center px-30 px-4">
           <h2 className="text-2xl font-semibold text-gray-800 text-left m-3">
