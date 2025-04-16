@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import Link from "next/link";
 
 export default function NetworkMarketing() {
   return (
@@ -62,9 +63,11 @@ export default function NetworkMarketing() {
                 </div>
               ))}
             </div>
+            <Link href="/affiliates">
             <button className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 px-6 rounded-lg shadow-md transition-colors duration-200 !rounded-button whitespace-nowrap cursor-pointer">
               Quiero ser distribuidor
             </button>
+            </Link>
           </div>
         </div>
       </div>
