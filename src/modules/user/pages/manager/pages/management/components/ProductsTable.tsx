@@ -1,6 +1,5 @@
 import { ProductInterface } from "../../../context/Products.context";
 import ProductRow from "./ProductRow";
-import { Title } from "./Title";
 interface ProductsTableProps {
   products: ProductInterface[];
   onEditProduct: (product: ProductInterface) => void;
