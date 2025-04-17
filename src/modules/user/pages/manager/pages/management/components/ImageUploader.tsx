@@ -11,7 +11,7 @@ export const ImageUploader = ({ images, onImageChange, onRemoveImage }: Props) =
   <div className="space-y-6">
     <div className="flex flex-wrap gap-6 justify-center">
       {images.map((image, index) => (
-        <div key={index} className="relative w-40 h-40">
+        <div key={index} className="relative w-25 h-25">
           <label className="w-full h-full flex items-center justify-center border-2 border-dashed rounded-lg cursor-pointer hover:bg-gray-100 transition">
             <input
               type="file"

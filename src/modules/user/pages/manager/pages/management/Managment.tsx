@@ -1,42 +1,3 @@
-// "use client"
-
-// import ProductsTable from "./components/ProductsTable";
-// import FormCreateProduct from "./components/FormCreateProduct";
-// import { useProducts } from "../../context/Products.context";
-
-// export const ManagementProductForm = () => {
-//     const { products } = useProducts()
-//     return (
-//         <section>
-//             <FormCreateProduct />       
-//             <ProductsTable products={products}/>
-//         </section>
-//     )
-// }
-
-
-// import { useState } from "react";
-// import { ProductInterface, useProducts } from "../../context/Products.context";
-// import ProductsTable from "./components/ProductsTable";
-// import FormCreateProduct from "./components/FormCreateProduct";
-
-// export const ManagementProductForm = () => {
-//   const { products } = useProducts();
-//   const [productToEdit, setProductToEdit] = useState<ProductInterface | undefined>(undefined);
-
-//   const handleEditProduct = (product: ProductInterface) => {
-//     setProductToEdit(product);
-//   };
-
-//   return (
-//     <section>
-//       <FormCreateProduct productToEdit={productToEdit} />
-//       <ProductsTable products={products} onEditProduct={handleEditProduct} />
-//     </section>
-//   );
-// };
-
-
 import { useState } from "react";
 import { ProductInterface, useProducts } from "../../context/Products.context";
 import ProductsTable from "./components/ProductsTable";
@@ -46,15 +7,18 @@ export const ManagementProductForm = () => {
   const { products } = useProducts();
   const [productToEdit, setProductToEdit] = useState<ProductInterface | undefined>(undefined);
 
-  // Esta función se pasa a ProductsTable y a ProductRow
   const handleEditProduct = (product: ProductInterface) => {
-    setProductToEdit(product);  // Esto actualizará el estado con el producto que se va a editar
+    setProductToEdit(product);  
   };
 
   return (
-    <section>
+    <section className="flex flex-col md:flex-row gap-6 p-4">
+    <div className="md:w-1/2 w-full">
       <FormCreateProduct productToEdit={productToEdit} />
+    </div>
+    <div className="md:w-1/2 w-full">
       <ProductsTable products={products} onEditProduct={handleEditProduct} />
-    </section>
-  );
+    </div>
+  </section>
+);
 };
