@@ -23,9 +23,7 @@ if(!product) return null;
         <h4 className="font-bold text-lg">{product.name}</h4>
         <p className="text-gray-600">{product.description}</p>
         <div className="mt-2 flex items-center gap-4">
-            <span className="text-sm bg-gray-200 px-3 py-1 rounded-full">
-            Size: {product.size}
-            </span>
+
             <span className="text-sm bg-gray-200 px-3 py-1 rounded-full">
             Qty: {quantity}
             </span>

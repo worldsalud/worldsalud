@@ -3,31 +3,33 @@
 import { useState, useEffect } from "react";
 import { useRouter, useSearchParams } from "next/navigation";
 import EmptySearch from "./EmptySearch";
-import { useProducts } from "@/modules/user/pages/manager/context/Products.context";
+import { ProductInterface, useProducts } from "@/modules/user/pages/manager/context/Products.context";
 import "./search.css";   // bg-color del body al gris 
 import { CardProductComponent } from "@/modules/checkout/pages/cart/components/Products.component";
 import Loading from "@/app/loading";
 import Link from "next/link";
 
-interface Product {
-  id?: string;
-  name: string;
-  description: string;
-  price: number | "";
-  stock: number | "";
-  image: string[];
-  size: string;
-  color: string;
-  discount?: number | "";
-  category: string;
-  isActive?: boolean;
-  style: string;
-}
+// interface Product {
+//   id?: string;
+//   name: string;
+//   description: string;
+//   price: number | "";
+//   stock: number | "";
+//   image: string[];
+//   size: string;
+//   color: string;
+//   discount?: number | "";
+//   category: string;
+//   isActive?: boolean;
+//   style: string;
+// }
 
 export default function SearchProductList() {
   const searchParams = useSearchParams();
   const query = searchParams.get("query") || "";
-  const [shownProducts, setShownProducts] = useState<Product[]>([]);
+  // const [shownProducts, setShownProducts] = useState<Product[]>([]);
+  const [shownProducts, setShownProducts] = useState<ProductInterface[]>([]);
+
   const [loading, setLoading] = useState(true);
   const { products } = useProducts();
 
@@ -42,14 +44,15 @@ export default function SearchProductList() {
 
   useEffect(() => {
     const filteredProducts = query
-      ? products.filter((product: Product) =>
+      ? products.filter((product) =>
           product.name.toLowerCase().includes(query.toLowerCase())
         )
       : [];
-
+  
     setShownProducts(filteredProducts);
     setLoading(false);
   }, [query, products]);
+  
 
   return (
     <div className="relative flex flex-col min-h-screen">
@@ -58,10 +61,10 @@ export default function SearchProductList() {
         className="absolute inset-0 bg-repeat blur-xl z-0"
         style={{
           backgroundImage: "url('/images/textures/8.jpg')",
-          backgroundSize: "1000px", // Ajusta el tamaño del mosaico
+          backgroundSize: "1000px", 
           backgroundPosition: "center",
-          backgroundRepeat: "repeat", // Hace que la imagen se repita en mosaico
-          filter: "blur(10px)", // Aplica el desenfoque
+          backgroundRepeat: "repeat", 
+          filter: "blur(10px)", 
         }}
       />
 
