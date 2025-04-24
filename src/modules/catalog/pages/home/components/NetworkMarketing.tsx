@@ -17,13 +17,24 @@ export default function NetworkMarketing() {
         </div>
         <div className="flex flex-col md:flex-row items-center justify-between gap-10">
           <div className="w-full md:w-1/2">
-            <Image
-              src="https://res.cloudinary.com/dfxps2pzh/image/upload/v1744338144/1ba55c35c554d9ef6106d6333115b313_kgs0y0.jpg"
+            {/* <Image
+              src="https://res.cloudinary.com/dfxps2pzh/image/upload/v1745474004/WhatsApp_Image_2025-04-19_at_13.37.22-Photoroom_zakrde.png"
               alt="Red de distribuidores"
               width={600}
               height={400}
               className="w-full h-auto rounded-lg shadow-lg"
-            />
+            /> */}
+
+<Image
+  src="https://res.cloudinary.com/dfxps2pzh/image/upload/v1745474004/WhatsApp_Image_2025-04-19_at_13.37.22-Photoroom_zakrde.png"
+  alt="Red de distribuidores"
+  width={600}
+  height={400}
+  className="w-full h-auto rounded-lg drop-shadow-[0_20px_40px_rgba(0,0,0,0.2)] hover:drop-shadow-[0_30px_50px_rgba(0,0,0,0.25)] hover:scale-105 transition-all duration-300"
+/>
+
+
+
           </div>
           <div className="w-full md:w-1/2">
             <h3 className="text-2xl font-bold text-green-700 mb-4">
@@ -34,7 +45,7 @@ export default function NetworkMarketing() {
                 {
                   icon: "fas fa-percentage",
                   title: "Comisiones atractivas",
-                  desc: "Gana hasta un 30% por ventas directas y comisiones por tu red de referidos.",
+                  desc: "Gana hasta un 40% por ventas directas y comisiones por tu red de referidos.",
                 },
                 {
                   icon: "fas fa-users",

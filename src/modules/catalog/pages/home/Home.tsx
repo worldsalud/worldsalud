@@ -57,24 +57,20 @@ export default function Home() {
               <p className="text-xl text-gray-700 mb-8">
                 Productos naturales + Oportunidad de negocio que transformará tu vida y bienestar.
               </p>
-              
-              
+
+
               <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
-  <Link href="/products">
-    <button className="bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-6 rounded-lg shadow-md transition-colors duration-200">
-      Comprar ahora
-    </button>
-  </Link>
-  <Link href="/affiliates">
-    <button className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 px-6 rounded-lg shadow-md transition-colors duration-200">
-      Afíliate y gana
-    </button>
-  </Link>
-</div>
-
-
-
-
+                <Link href="/products">
+                  <button className="bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-6 rounded-lg shadow-md transition-colors duration-200">
+                    Comprar ahora
+                  </button>
+                </Link>
+                <Link href="/affiliates">
+                  <button className="bg-blue-500 hover:bg-blue-600 text-white font-semibold py-3 px-6 rounded-lg shadow-md transition-colors duration-200">
+                    Afíliate y gana
+                  </button>
+                </Link>
+              </div>
             </div>
           </div>
         </section>
@@ -92,7 +88,7 @@ export default function Home() {
             </div>
 
             <ProductGrid />
-         
+
             <div className="text-center mt-10">
               <button className="bg-white border-2 border-green-600 text-green-600 hover:bg-green-50 font-semibold py-2 px-6 rounded-lg transition-colors duration-200 !rounded-button whitespace-nowrap cursor-pointer">
                 Ver todos los productos
