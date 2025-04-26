@@ -41,6 +41,10 @@ const nextConfig: NextConfig = {
         protocol: "https",
         hostname: "co.pinterest.com"
       },
+      {
+        protocol: 'https',
+        hostname: 'img.youtube.com',
+      },
     ],
   },
 };

@@ -1,5 +1,4 @@
 "use client";
-
 import { useEffect } from "react";
 import ProductGrid from "./components/products/ProductGrid";
 import '@fortawesome/fontawesome-free/css/all.min.css';
@@ -10,8 +9,6 @@ import NetworkMarketing from "./components/NetworkMarketing";
 import Testimonials from "./components/Testimonials";
 import Recommendations from "./components/Recommendations";
 import Link from "next/link";
-
-
 export default function Home() {
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -20,7 +17,6 @@ export default function Home() {
       localStorage.setItem("token", token);
     }
   }, []);
-
   return (
     <div className="relative flex flex-col min-h-screen">
       {/* Fondo visual */}
@@ -34,7 +30,6 @@ export default function Home() {
         }}
       />
       <div className="absolute inset-0 bg-white/50"></div>
-
       {/* Contenido */}
       <main className="relative pt-16">
         {/* Hero Section */}
@@ -57,8 +52,6 @@ export default function Home() {
               <p className="text-xl text-gray-700 mb-8">
                 Productos naturales + Oportunidad de negocio que transformará tu vida y bienestar.
               </p>
-
-
               <div className="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-4">
                 <Link href="/products">
                   <button className="bg-green-600 hover:bg-green-700 text-white font-semibold py-3 px-6 rounded-lg shadow-md transition-colors duration-200">
@@ -74,7 +67,6 @@ export default function Home() {
             </div>
           </div>
         </section>
-
         {/* Productos destacados */}
         <section className="py-16 bg-white relative z-10">
           <div className="container mx-auto px-4">
@@ -86,9 +78,7 @@ export default function Home() {
                 Descubre nuestra selección de productos naturales diseñados para mejorar tu bienestar y calidad de vida.
               </p>
             </div>
-
             <ProductGrid />
-
             <div className="text-center mt-10">
               <button className="bg-white border-2 border-green-600 text-green-600 hover:bg-green-50 font-semibold py-2 px-6 rounded-lg transition-colors duration-200 !rounded-button whitespace-nowrap cursor-pointer">
                 Ver todos los productos
@@ -96,7 +86,6 @@ export default function Home() {
             </div>
           </div>
         </section>
-
         <Recommendations showLimited />
         <Testimonials />
         <NetworkMarketing />
