@@ -27,6 +27,16 @@ interface TestimonialListProps {
 
 const PAGE_SIZE = 6;
 
+const SkeletonTestimonial = () => (
+  <div className="bg-white rounded-lg shadow p-4 animate-pulse">
+    <div className="h-6 bg-gray-300 rounded w-2/3 mb-4"></div>
+    <div className="flex flex-wrap gap-2 mb-2">
+      <div className="h-4 bg-gray-300 rounded w-24"></div>
+      <div className="h-4 bg-gray-300 rounded w-16"></div>
+    </div>
+  </div>
+);
+
 export default function Testimonials({
   showFilters = true,
   showLoadMoreButton = true,
@@ -99,10 +109,50 @@ export default function Testimonials({
   const handleLoadMore = () => setVisibleCount((prev) => prev + pageSize);
   const closeModal = () => setVideoModal(null);
 
-  if (loading)
-    return <p className="text-center text-gray-600 py-10">Cargando testimonios...</p>;
-  if (error)
-    return <p className="text-center text-red-500 py-10">{error}</p>;
+  if (loading) {
+    return (
+      <section className="py-20 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-10">
+            <h1 className="text-4xl font-bold text-green-800 mb-4">
+              Testimonios de Clientes
+            </h1>
+            <p className="text-gray-600 max-w-2xl mx-auto">
+              Descubre cómo nuestros productos han impactado vidas reales.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {Array.from({ length: 3 }).map((_, idx) => (
+              <SkeletonTestimonial key={idx} />
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+  }
+  
+  if (error) {
+    return (
+      <section className="py-20 bg-white">
+        <div className="container mx-auto px-4">
+          <div className="text-center mb-10">
+            <h1 className="text-4xl font-bold text-green-800 mb-4">
+              Testimonios de Clientes
+            </h1>
+            <p className="text-gray-600 max-w-2xl mx-auto">
+              Descubre cómo nuestros productos han impactado vidas reales.
+            </p>
+          </div>
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+            {Array.from({ length: 3 }).map((_, idx) => (
+              <SkeletonTestimonial key={idx} />
+            ))}
+          </div>
+        </div>
+      </section>
+    );
+  }
+  
 
   return (
     <section className="py-20 bg-white">

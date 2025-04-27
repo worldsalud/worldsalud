@@ -79,11 +79,13 @@ export default function Home() {
               </p>
             </div>
             <ProductGrid />
+            <Link href="/products">
             <div className="text-center mt-10">
               <button className="bg-white border-2 border-green-600 text-green-600 hover:bg-green-50 font-semibold py-2 px-6 rounded-lg transition-colors duration-200 !rounded-button whitespace-nowrap cursor-pointer">
                 Ver todos los productos
               </button>
             </div>
+            </Link>
           </div>
         </section>
         <Recommendations showLimited />
