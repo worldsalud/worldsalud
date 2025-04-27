@@ -4,27 +4,20 @@ import React, { useState, useContext, createContext, useEffect, useCallback } fr
 import { useRouter } from 'next/navigation';
 import { LoginInterface } from "../interfaces/Login.interface";
 import { SignupInterface } from "../interfaces/Signup.interface";
-import axios from "axios";
-
 import { UpdateDataProfileInterface, UpdateDataUserShipmentInterface, UserInterface } from "../interfaces/User.interface";
 import { getAuthHeaders } from '../../../../modules/user/pages/manager/context/getAuthHeaders';
 import Loading from '../../../../app/loading';
 import { API_BACK } from '../../../../shared/config/api/getEnv';
-
-
-
-
+import axios from "axios";
 interface ResponseInterface {
     token: string;
     message: string;
 }
-
 export interface ErrorResponse {
     message: string;
     statusCode?: number;  
     error?: string; 
 }
-
 const defaultUser: UserInterface = {
     id: '',
     name: '',
@@ -42,8 +35,6 @@ const defaultUser: UserInterface = {
     createdAt: '',
     updatedAt: ''
 };
-
-
 interface AuthContextInterface {
     user: UserInterface;
     login: (loginForm: LoginInterface) => void;
@@ -139,15 +130,29 @@ export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
     
     if(isLoading) return <Loading/>
 
+    // const getIsAdmin = (token: string): boolean => {
+    //     try {
+    //         const payload = JSON.parse(atob(token.split(".")[1]));
+    //         return payload.role === "admin";
+    //     } catch (error) {
+    //         console.error("Error decoding token:", error);
+    //         return false;
+    //     }
+    // };
+
     const getIsAdmin = (token: string): boolean => {
+        if (!token) return false;
         try {
-            const payload = JSON.parse(atob(token.split(".")[1]));
+            const base64Url = token.split(".")[1];
+            if (!base64Url) return false;
+            const payload = JSON.parse(atob(base64Url));
             return payload.role === "admin";
         } catch (error) {
             console.error("Error decoding token:", error);
             return false;
         }
     };
+    
 
     const updateDataUser = async(updateDataUser: UpdateDataProfileInterface) => {
         const updatedFields: Partial<UpdateDataProfileInterface> = {};
