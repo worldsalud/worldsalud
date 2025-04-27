@@ -36,8 +36,8 @@ export default function Home() {
         <section className="relative min-h-[600px] flex items-center">
           <div className="absolute inset-0 w-full h-full">
             <Image
-              src="https://res.cloudinary.com/dfxps2pzh/image/upload/v1744338144/1ba55c35c554d9ef6106d6333115b313_kgs0y0.jpg"
-              alt="Bienestar natural"
+            src="https://res.cloudinary.com/dfxps2pzh/image/upload/f_webp/v1744338144/1ba55c35c554d9ef6106d6333115b313_kgs0y0.jpg"
+            alt="Bienestar natural"
               className="w-full h-full object-cover"
               width={100}
               height={100}
