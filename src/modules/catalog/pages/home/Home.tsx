@@ -6,9 +6,9 @@ import TrustBadges from "./components/TrustBadges";
 import PurchaseProcess from "./components/PurchaseProcess";
 import Image from "next/image";
 import NetworkMarketing from "./components/NetworkMarketing";
-import Testimonials from "./components/Testimonials";
 import Recommendations from "./components/Recommendations";
 import Link from "next/link";
+import Testimonials from "../testimonials/testimonials";
 export default function Home() {
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -87,7 +87,7 @@ export default function Home() {
           </div>
         </section>
         <Recommendations showLimited />
-        <Testimonials />
+        <Testimonials showFilters={false} showLoadMoreButton={false} showModal={false} pageSize={3} isHome={true} />
         <NetworkMarketing />
         <PurchaseProcess />
         <TrustBadges />
