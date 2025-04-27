@@ -47,7 +47,7 @@ export default function NavBar() {
         </div>
         {/* Logo */}
         <div className="flex-1 flex justify-center md:justify-start">
-          <Link href="/home">
+          <Link href="/home" aria-label="Ir a la página de inicio">
             <Image
               src="/worldsalud.webp"
               alt="world salud"
@@ -59,7 +59,7 @@ export default function NavBar() {
         </div>
         {/* Íconos móviles */}
         <div className="right-4 top-1 -translate-y-1 flex items-center gap-4 md:hidden">
-          <Link href="/search">
+          <Link href="/search" aria-label="Ir a la página de búsqueda">
             <Search size={24} color="gray" className="cursor-pointer" />
           </Link>
           <Link href="/cart" className="relative">
@@ -101,7 +101,7 @@ export default function NavBar() {
           )}
 
           {/* Carrito */}
-          <Link href="/cart" className="relative">
+          <Link href="/cart" className="relative" aria-label="Ver productos en el carrito">
             {isAuthenticated && countProducts() > 0 && (
               <div className="bg-[#0FCBB8] w-4 h-4 rounded-full flex justify-center items-center absolute -top-2 -right-2">
                 <span className="text-[10px] font-semibold text-gray-900">
@@ -112,7 +112,7 @@ export default function NavBar() {
             <ShoppingCart size={24} color="gray" />
           </Link>
 
-          <Link href="/help">
+          <Link href="/help" aria-label="ir a la sección de ayuda">
             <HelpCircle size={24} color="gray" className="cursor-pointer" />
           </Link>
 
@@ -122,12 +122,14 @@ export default function NavBar() {
             <>
               <Link
                 href="/login"
+                aria-label="Login"
                 className="text-[#0FCBB8] hover:brightness-125 transition duration-200"
               >
                 Iniciar sesión
               </Link>
               <Link
                 href="/signup"
+                aria-label="signup"
                 className="text-[#0FCBB8] hover:brightness-125 transition duration-200"
               >
                 Crear cuenta
