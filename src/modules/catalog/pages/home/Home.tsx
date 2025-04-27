@@ -8,7 +8,7 @@ import Image from "next/image";
 import NetworkMarketing from "./components/NetworkMarketing";
 import Recommendations from "./components/Recommendations";
 import Link from "next/link";
-import Testimonials from "../testimonials/testimonials";
+import Testimonials from "./components/Testimonials";
 export default function Home() {
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
