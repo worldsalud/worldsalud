@@ -120,6 +120,7 @@ export default function Chatbot() {
       >
         <MessageSquareMoreIcon size={24} className="hidden sm:block" />
         <MessageSquareMoreIcon size={15} className="sm:hidden" />
+        <span className="sr-only">Abrir chat de ayuda</span>
       </button>
 
       {isOpen && (
@@ -168,7 +169,11 @@ export default function Chatbot() {
                   onKeyDown={handleKeyPress}
                   placeholder="¿Cómo puedo ayudarte?"
                 />
-                <button onClick={sendMessage} className="ml-2 p-2 bg-blue-500 text-white rounded-md">
+                <button
+                  onClick={sendMessage}
+                  className="ml-2 p-2 bg-blue-500 text-white rounded-md"
+                  aria-label="Enviar mensaje"
+                >
                   ➤
                 </button>
               </div>
