@@ -47,18 +47,19 @@ export default function Testimonials({
   const isYouTubeUrl = (url: string): boolean => {
     return url.includes("youtube.com") || url.includes("youtu.be");
   };
-
+  
   const getYouTubeIdFromUrl = (url: string): string | null => {
     const match = url.match(
       /(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/)|youtu\.be\/)([\w-]{11})/
     );
     return match?.[1] ?? null;
   };
-
+  
   const getYouTubeEmbedUrl = (url: string): string | null => {
     const id = getYouTubeIdFromUrl(url);
     return id ? `https://www.youtube.com/embed/${id}?autoplay=1` : null;
   };
+  
 
   useEffect(() => {
     const fetchTestimonials = async () => {
@@ -251,40 +252,40 @@ export default function Testimonials({
       </div>
       {/* Modal Video */}
       {showModal && videoModal &&
-        createPortal(
-          <div
-            onClick={closeModal}
-            className="fixed inset-0 bg-black bg-opacity-70 z-50 flex items-center justify-center p-4"
-          >
-            <div
-              onClick={(e) => e.stopPropagation()}
-              className="bg-white rounded-lg overflow-hidden max-w-2xl w-full relative"
-            >
-              <button
-                onClick={closeModal}
-                className="absolute top-2 right-2 bg-red-600 text-white rounded-full p-1 text-sm"
-              >
-                ✕
-              </button>
-              {isYouTubeUrl(videoModal) ? (
-                <iframe
-                  src={getYouTubeEmbedUrl(videoModal)!}
-                  className="w-full aspect-video"
-                  allow="autoplay; encrypted-media"
-                  allowFullScreen
-                />
-              ) : (
-                <video
-                  src={videoModal}
-                  controls
-                  autoPlay
-                  className="w-full h-auto"
-                />
-              )}
-            </div>
-          </div>,
-          document.body
+  createPortal(
+    <div
+      onClick={closeModal}
+      className="fixed inset-0 bg-black bg-opacity-70 z-50 flex items-center justify-center p-4"
+    >
+      <div
+        onClick={(e) => e.stopPropagation()}
+        className="bg-white rounded-lg overflow-hidden max-w-2xl w-full relative"
+      >
+        <button
+          onClick={closeModal}
+          className="absolute top-2 right-2 bg-red-600 text-white rounded-full p-1 text-sm"
+        >
+          ✕
+        </button>
+        {isYouTubeUrl(videoModal) ? (
+          <iframe
+            src={getYouTubeEmbedUrl(videoModal)!}
+            className="w-full aspect-video"
+            allow="autoplay; encrypted-media"
+            allowFullScreen
+          />
+        ) : (
+          <video
+            src={videoModal}
+            controls
+            autoPlay
+            className="w-full h-auto"
+          />
         )}
+      </div>
+    </div>,
+    document.body
+  )}
     </section>
   );
 }

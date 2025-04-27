@@ -87,7 +87,7 @@ export default function Home() {
           </div>
         </section>
         <Recommendations showLimited />
-        <Testimonials showFilters={false} showLoadMoreButton={false} showModal={false} pageSize={3} isHome={true} />
+        <Testimonials showFilters={false} showLoadMoreButton={false} showModal={true} pageSize={3} isHome={true} />
         <NetworkMarketing />
         <PurchaseProcess />
         <TrustBadges />
