@@ -4,6 +4,7 @@ import Image from "next/image";
 import { API_BACK } from "@/shared/config/api/getEnv";
 import { createPortal } from "react-dom";
 import Link from "next/link";
+import { useInView } from "@/hooks/useInView";  
 
 interface Testimonial {
   id: string;
@@ -53,33 +54,37 @@ export default function Testimonials({
   const [videoModal, setVideoModal] = useState<string | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
+  const { ref, isInView } = useInView<HTMLButtonElement>();
 
   const isYouTubeUrl = (url: string): boolean => {
     return url.includes("youtube.com") || url.includes("youtu.be");
   };
-  
+
   const getYouTubeIdFromUrl = (url: string): string | null => {
     const match = url.match(
       /(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/)|youtu\.be\/)([\w-]{11})/
     );
     return match?.[1] ?? null;
   };
-  
+
   const getYouTubeEmbedUrl = (url: string): string | null => {
     const id = getYouTubeIdFromUrl(url);
     return id ? `https://www.youtube.com/embed/${id}?autoplay=1` : null;
   };
-  
+
+
+
 
   useEffect(() => {
     const fetchTestimonials = async () => {
+      setLoading(true);
       try {
         const response = await fetch(`${API_BACK}/testimonials`);
         if (!response.ok) throw new Error("Error al obtener los testimonios");
         const data: Testimonial[] = await response.json();
         setAllTestimonials(data);
-      } catch (err) {
-        setError((err as Error).message);
+      } catch (error) {
+        console.error(error);
       } finally {
         setLoading(false);
       }
@@ -106,7 +111,21 @@ export default function Testimonials({
   const visibleTestimonials = filteredTestimonials.slice(0, visibleCount);
   const hasMore = visibleCount < filteredTestimonials.length;
 
-  const handleLoadMore = () => setVisibleCount((prev) => prev + pageSize);
+
+
+
+  const handleLoadMore = () => {
+    if (isInView) {
+      setVisibleCount((prev) => prev + pageSize);
+    }
+  };
+
+  useEffect(() => {
+    if (isInView) {
+      setVisibleCount((prev) => prev + pageSize);
+    }
+  }, [isInView]);
+
   const closeModal = () => setVideoModal(null);
 
   if (loading) {
@@ -130,7 +149,7 @@ export default function Testimonials({
       </section>
     );
   }
-  
+
   if (error) {
     return (
       <section className="py-20 bg-white">
@@ -152,8 +171,6 @@ export default function Testimonials({
       </section>
     );
   }
-  
-
   return (
     <section className="py-20 bg-white">
       <div className="container mx-auto px-4">
@@ -165,7 +182,6 @@ export default function Testimonials({
             Descubre cómo nuestros productos han impactado vidas reales.
           </p>
         </div>
-
         {showFilters && (
           <div className="flex flex-wrap justify-between items-center gap-4 mb-8">
             <div className="space-x-2">
@@ -173,11 +189,10 @@ export default function Testimonials({
                 <button
                   key={type}
                   onClick={() => setFilter(type as "all" | "text" | "video")}
-                  className={`px-4 py-2 rounded-full text-sm font-medium border ${
-                    filter === type
+                  className={`px-4 py-2 rounded-full text-sm font-medium border ${filter === type
                       ? "bg-green-600 text-white"
                       : "bg-white text-green-600 border-green-600"
-                  }`}
+                    }`}
                 >
                   {type === "all" ? "Todos" : type === "text" ? "Texto" : "Video"}
                 </button>
@@ -231,7 +246,7 @@ export default function Testimonials({
                           src={`https://img.youtube.com/vi/${youTubeId}/0.jpg`}
                           alt={t.name}
                           fill
-                          sizes="(max-width: 768px) 100vw, 33vw" 
+                          sizes="(max-width: 768px) 100vw, 33vw"
                           className="object-cover"
                         />
                       </div>
@@ -252,7 +267,7 @@ export default function Testimonials({
                       src={t.mediaUrl}
                       alt={t.name}
                       fill
-                      sizes="(max-width: 768px) 100vw, 33vw" 
+                      sizes="(max-width: 768px) 100vw, 33vw"
                       className="object-cover"
                     />
                   </div>
@@ -294,6 +309,7 @@ export default function Testimonials({
         {showLoadMoreButton && hasMore && (
           <div className="text-center mt-10">
             <button
+              ref={ref}
               onClick={handleLoadMore}
               className="bg-green-600 hover:bg-green-700 text-white font-semibold py-2 px-6 rounded-lg transition-colors duration-200"
             >
@@ -304,40 +320,40 @@ export default function Testimonials({
       </div>
       {/* Modal Video */}
       {showModal && videoModal &&
-  createPortal(
-    <div
-      onClick={closeModal}
-      className="fixed inset-0 bg-black bg-opacity-70 z-50 flex items-center justify-center p-4"
-    >
-      <div
-        onClick={(e) => e.stopPropagation()}
-        className="bg-white rounded-lg overflow-hidden max-w-2xl w-full relative"
-      >
-        <button
-          onClick={closeModal}
-          className="absolute top-2 right-2 bg-red-600 text-white rounded-full p-1 text-sm"
-        >
-          ✕
-        </button>
-        {isYouTubeUrl(videoModal) ? (
-          <iframe
-            src={getYouTubeEmbedUrl(videoModal)!}
-            className="w-full aspect-video"
-            allow="autoplay; encrypted-media"
-            allowFullScreen
-          />
-        ) : (
-          <video
-            src={videoModal}
-            controls
-            autoPlay
-            className="w-full h-auto"
-          />
+        createPortal(
+          <div
+            onClick={closeModal}
+            className="fixed inset-0 bg-black bg-opacity-70 z-50 flex items-center justify-center p-4"
+          >
+            <div
+              onClick={(e) => e.stopPropagation()}
+              className="bg-white rounded-lg overflow-hidden max-w-2xl w-full relative"
+            >
+              <button
+                onClick={closeModal}
+                className="absolute top-2 right-2 bg-red-600 text-white rounded-full p-1 text-sm"
+              >
+                ✕
+              </button>
+              {isYouTubeUrl(videoModal) ? (
+                <iframe
+                  src={getYouTubeEmbedUrl(videoModal)!}
+                  className="w-full aspect-video"
+                  allow="autoplay; encrypted-media"
+                  allowFullScreen
+                />
+              ) : (
+                <video
+                  src={videoModal}
+                  controls
+                  autoPlay
+                  className="w-full h-auto"
+                />
+              )}
+            </div>
+          </div>,
+          document.body
         )}
-      </div>
-    </div>,
-    document.body
-  )}
     </section>
   );
 }
