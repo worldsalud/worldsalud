@@ -55,26 +55,19 @@ export default function Testimonials({
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
   const { ref, isInView } = useInView<HTMLButtonElement>();
-
   const isYouTubeUrl = (url: string): boolean => {
     return url.includes("youtube.com") || url.includes("youtu.be");
   };
-
   const getYouTubeIdFromUrl = (url: string): string | null => {
     const match = url.match(
       /(?:youtube\.com\/(?:watch\?v=|embed\/|shorts\/)|youtu\.be\/)([\w-]{11})/
     );
     return match?.[1] ?? null;
   };
-
   const getYouTubeEmbedUrl = (url: string): string | null => {
     const id = getYouTubeIdFromUrl(url);
     return id ? `https://www.youtube.com/embed/${id}?autoplay=1` : null;
   };
-
-
-
-
   useEffect(() => {
     const fetchTestimonials = async () => {
       setLoading(true);
@@ -83,16 +76,15 @@ export default function Testimonials({
         if (!response.ok) throw new Error("Error al obtener los testimonios");
         const data: Testimonial[] = await response.json();
         setAllTestimonials(data);
-      } catch (error) {
+      }catch (error) {
+        setError("Error al obtener los testimonios"); 
         console.error(error);
       } finally {
         setLoading(false);
       }
     };
-
     fetchTestimonials();
-  }, []);
-
+  }, [pageSize]);
   const filteredTestimonials = useMemo(() => {
     return allTestimonials
       .filter((t) => (filter === "all" ? true : t.type === filter))
@@ -107,27 +99,19 @@ export default function Testimonials({
         return dateB - dateA;
       });
   }, [allTestimonials, filter, search, minRating, sortBy]);
-
   const visibleTestimonials = filteredTestimonials.slice(0, visibleCount);
   const hasMore = visibleCount < filteredTestimonials.length;
-
-
-
-
   const handleLoadMore = () => {
     if (isInView) {
       setVisibleCount((prev) => prev + pageSize);
     }
   };
-
   useEffect(() => {
     if (isInView) {
       setVisibleCount((prev) => prev + pageSize);
     }
   }, [isInView]);
-
   const closeModal = () => setVideoModal(null);
-
   if (loading) {
     return (
       <section className="py-20 bg-white">
@@ -149,7 +133,6 @@ export default function Testimonials({
       </section>
     );
   }
-
   if (error) {
     return (
       <section className="py-20 bg-white">
