@@ -19,16 +19,6 @@ export default function Home() {
   }, []);
   return (
     <div className="relative flex flex-col min-h-screen">
-      {/* Fondo visual */}
-      <div
-        className="absolute inset-0 bg-repeat blur-xl"
-        style={{
-          backgroundImage: "url('/images/textures/leaf-pattern.jpg')",
-          backgroundSize: "800px",
-          backgroundPosition: "center",
-          filter: "blur(10px)",
-        }}
-      />
       <div className="absolute inset-0 bg-white/50"></div>
       {/* Contenido */}
       <main className="relative pt-16">

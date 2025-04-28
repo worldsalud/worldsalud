@@ -231,6 +231,7 @@ export default function Testimonials({
                           src={`https://img.youtube.com/vi/${youTubeId}/0.jpg`}
                           alt={t.name}
                           fill
+                          sizes="(max-width: 768px) 100vw, 33vw" 
                           className="object-cover"
                         />
                       </div>
@@ -251,6 +252,7 @@ export default function Testimonials({
                       src={t.mediaUrl}
                       alt={t.name}
                       fill
+                      sizes="(max-width: 768px) 100vw, 33vw" 
                       className="object-cover"
                     />
                   </div>
