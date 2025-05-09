@@ -16,6 +16,7 @@ export default function Sidebar({ activeTab, setActiveTab, menuOpen, setMenuOpen
     { icon: <Boxes />, name: "Stock", id: "invent" },
     { icon: <Newspaper />, name: "Magazine", id: "forum" },
     { icon: <ShieldCheck />, name: "Seguridad", id: "settings" },
+    { icon: <Users />, name: "Testimonios", id: "testimonials" }, 
   ];
   return (
     <>

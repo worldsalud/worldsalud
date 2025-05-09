@@ -13,6 +13,7 @@
     "@fortawesome/free-brands-svg-icons": "^6.7.2",
     "@fortawesome/free-solid-svg-icons": "^6.7.2",
     "@fortawesome/react-fontawesome": "^0.2.2",
+    "@headlessui/react": "^2.2.2",
     "@heroicons/react": "^2.2.0",
     "@react-google-maps/api": "^2.20.6",
     "@tailwindcss/line-clamp": "^0.4.4",
@@ -23,7 +24,8 @@
     "@tiptap/react": "^2.11.5",
     "@tiptap/starter-kit": "^2.11.5",
     "@types/axios": "^0.9.36",
-    "axios": "^1.8.1",
+    "axios": "^1.9.0",
+    "clsx": "^2.1.1",
     "date-fns": "^4.1.0",
     "dotenv": "^16.4.7",
     "framer-motion": "^12.4.7",
@@ -43,7 +45,7 @@
     "socket": "^0.14.43",
     "socket.io-client": "^4.8.1",
     "sweetalert2": "^11.17.2",
-    "swiper": "^11.2.5"
+    "swiper": "^11.2.6"
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",

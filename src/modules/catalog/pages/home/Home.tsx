@@ -9,6 +9,7 @@ import NetworkMarketing from "./components/NetworkMarketing";
 import Recommendations from "./components/Recommendations";
 import Link from "next/link";
 import Testimonials from "./components/Testimonials";
+import PromoCarousel from "./components/PromoCarousel";
 export default function Home() {
   useEffect(() => {
     const params = new URLSearchParams(window.location.search);
@@ -22,6 +23,8 @@ export default function Home() {
       <div className="absolute inset-0 bg-white/50"></div>
       {/* Contenido */}
       <main className="relative pt-16">
+         {/* Carrusel de promociones */}
+  <PromoCarousel />
         {/* Hero Section */}
         <section className="relative min-h-[600px] flex items-center">
           <div className="absolute inset-0 w-full h-full">
@@ -57,6 +60,10 @@ export default function Home() {
             </div>
           </div>
         </section>
+
+
+ 
+        
         {/* Productos destacados */}
         <section className="py-16 bg-white relative z-10">
           <div className="container mx-auto px-4">

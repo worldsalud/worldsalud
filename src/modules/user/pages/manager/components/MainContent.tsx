@@ -3,9 +3,10 @@ import OrderList from "../general/GestionPedidos/OrderList";
 import UserManagement from "../general/GestionUsuarios/UserManagement";
 import StockMovements from "../pages/stock/Stock";
 import FormMagazine from "@/shared/components/formMagazine/FormMagazine";
-// import SeguridadConfiguracion from "@/shared/components/seguridadConfiguracion/SeguridadConfiguracion";
+import SeguridadConfiguracion from "@/shared/components/seguridadConfiguracion/SeguridadConfiguracion";
 import DashboardPanel from "../general/Panel de Control/DashboardPanel";
 import { ManagementProductForm } from "../pages/management/Managment";
+import CreateTestimonialForm from "../pages/testimonial/Testimonials";
 
 interface MainContentProps {
   activeTab: string;
@@ -21,7 +22,8 @@ export default function MainContent({ activeTab }: MainContentProps) {
       {/* {activeTab === "finance" && <FinanzasDashboard />} */}
       {activeTab === "products" && <ManagementProductForm />}
       {activeTab === "forum" && <FormMagazine />}
-      {/* {activeTab === "settings" && <SeguridadConfiguracion />} */}
+      {activeTab === "settings" && <SeguridadConfiguracion />}
+      {activeTab === "testimonials" && <CreateTestimonialForm />}
     </div>
   );
 }
